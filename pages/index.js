@@ -29,6 +29,16 @@ const index = () => {
       <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center">
         <h1 style={{letterSpacing: '10px'}} className="text-4xl md:text-7xl font-black uppercase">Freedom</h1>
         <h2 className="text-sm md:text-xl font-medium italic uppercase tracking-widest">The Album Coming Soon</h2>
+        <ul className="mt-10 text-center italic text-lg">
+          <li>- Freedom</li>
+          <li>- No?</li>
+          <li>- Only Us</li>
+          <li>- Anticipation</li>
+          <li>- See ya Santiago</li>
+          <li>- 2 days from now</li>
+          <li>- New Year's Eve Drop</li>
+          <li>- Five Not Four</li>
+        </ul>
       </div>
       <div className="absolute bottom-0 w-full flex justify-center p-5">
         <div className="grid grid-cols-5 gap-3 md:gap-10 text-center">
