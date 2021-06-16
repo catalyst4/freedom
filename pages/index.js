@@ -20,10 +20,10 @@ const index = () => {
       <img src="/img/bg.jpg" className="w-full h-screen object-cover opacity-20 filter blur-sm" />
       <div className="absolute top-0 right-0 p-5 flex w-full justify-center items-center z-50">
         <Link href="/exclusives">
-          <button className="font-semibold mr-5">Exclusives</button>
+          <button className="font-semibold mr-5 outline-none">Exclusives</button>
         </Link>
         <Link href="/redeem">
-          <button className="font-semibold">Redeem Code</button>
+          <button className="font-semibold outline-none">Redeem Code</button>
         </Link>
       </div>
       <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center">

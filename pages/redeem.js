@@ -40,7 +40,7 @@ const redeem = () => {
                 <div className="flex flex-col justify-center items-center">
                     <Link href="/">
                         <button 
-                            className="flex items-center opacity-50 font-medium mb-2"
+                            className="flex items-center opacity-50 font-medium mb-2 outline-none"
                         >
                             <ArrowSmLeftIcon className="w-4 h-4 mr-1" />
                             Back

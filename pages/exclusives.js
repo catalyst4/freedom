@@ -22,7 +22,7 @@ const exclusives = () => {
             <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center">
                 <Link href="/">
                     <button 
-                        className="flex items-center opacity-50 font-medium mb-2"
+                        className="flex items-center opacity-50 font-medium mb-2 outline-none"
                     >
                         <ArrowSmLeftIcon className="w-4 h-4 mr-1" />
                         Back
