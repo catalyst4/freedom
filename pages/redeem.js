@@ -4,15 +4,26 @@ import { KeyIcon, LockOpenIcon, LockClosedIcon } from '@heroicons/react/solid'
 import { countdown } from '../countdown'
 import Link from 'next/link'
 import { ArrowSmLeftIcon } from '@heroicons/react/solid'
+import axios from 'axios'
 
 const redeem = () => {
 
     const [code, setCode] = useState(undefined)
     const [success, setSuccess] = useState(false)
     const [valid, setValid] = useState(false)
+    const [error, setError] = useState(false)
 
-    const redeem = () => {
-        setSuccess(true)
+    const redeem = async () => {
+        const { data: { success } } = await axios.post('/api/code', { code })
+
+        if(success) {
+            setSuccess(true)
+        } else {
+            setError(true)
+        }
+
+        console.log(success)
+
     }
 
     useEffect(() => {
@@ -49,13 +60,13 @@ const redeem = () => {
                     {!success ? (
                         <>
                             <h1 className="text-2xl text-center font-bold mb-3">Redeem Code</h1>
-                            <div className="bg-white border-2 px-4 py-2 rounded-lg text-black flex items-center mb-2">
+                            <div className={`${error && 'border-3 border-red-500'} bg-white border-2 px-4 py-2 rounded-lg text-black flex items-center mb-2`}>
                                 <KeyIcon className="w-4 h-4 mr-2 opacity-50" />
                                 <input type="text"
                                     value={code}
                                     placeholder="Enter code"
                                     onChange={(e) => setCode(e.target.value)}
-                                    className="bg-transparent placeholder-black placeholder-opacity-50 font-medium focus:outline-none"
+                                    className={`bg-transparent placeholder-black placeholder-opacity-50 font-medium focus:outline-none`}
                                 />
                             </div>
                             <button
@@ -72,7 +83,10 @@ const redeem = () => {
                             </button>     
                         </>
                     ) : (
-                        <div>thanks</div>
+                        <>
+                            <h1 className="text-2xl font-bold mb-5 text-center">Congratulations! Code successfully registered.</h1>
+                            <span className="text-lg md:w-1/2 leading-5 text-center">Thank you for registering your code! Please keep note of your code as you will need it upon release.</span>
+                        </>
                     )}
                        
                 </div>

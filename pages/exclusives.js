@@ -28,8 +28,8 @@ const exclusives = () => {
                         Back
                     </button>
                 </Link>
-                <p className="w-full px-4 md:px-0 md:w-1/2 text-center text-3xl font-medium mb-3">Unfortunately due to covid delays the full Freedom Album will be released 31/12/21</p>
-                <p className="w-4/5 md:w-1/2 text-center text-lg opacity-90">Countdown on this journey with us and earn yourself exclusive gifts now until December when we release the sponsored teams</p>
+                <p className="w-full px-4 md:px-0 md:w-1/2 text-center text-3xl font-medium mb-3">Countdown on this journey with us and earn yourself exclusive gifts from now until December</p>
+                <p className="w-4/5 md:w-1/2 text-center text-lg opacity-90">Keep an eye out for each sponsored list we release as the days go by. Exclusive Steps are shown on our Instagram page @countdowntofreedom once released. Thank you!</p>
             </div>
             <div className="absolute bottom-0 w-full flex justify-center p-5">
                 <div className="grid grid-cols-5 gap-3 md:gap-10 text-center">
