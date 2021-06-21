@@ -1,6 +1,13 @@
-module.exports = (req, res) => {
+const { connectDb } = require("../../util/db")
+const { Email } = require("../../util/Email")
 
-    const { code } = req.body
+module.exports = async (req, res) => {
+
+    const { email, code } = req.body
+
+    if(!email || !code) {
+        return res.json({ success: false })
+    }
 
     const codes = [
         'ADFH-12SD-12DS',
@@ -14,10 +21,16 @@ module.exports = (req, res) => {
         'POOL-AD78-MMNA'
     ]
 
-    if(codes.find(validCode => validCode === code)) {
-        res.json({ success: true })
-    } else {
-        res.json({ success: false })
+    if(!codes.find(validCode => validCode === code)) {
+        return res.json({ success: false })
     }
+
+    await connectDb()
+
+    const epic = new Email({ email })
+
+    await epic.save()
+
+    return res.json({ success: true })
 
 }

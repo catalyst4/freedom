@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import React, { useEffect, useState } from 'react'
-import { KeyIcon, LockOpenIcon, LockClosedIcon } from '@heroicons/react/solid'
+import { KeyIcon, LockOpenIcon, LockClosedIcon, MailIcon } from '@heroicons/react/solid'
 import { countdown } from '../countdown'
 import Link from 'next/link'
 import { ArrowSmLeftIcon } from '@heroicons/react/solid'
@@ -9,12 +9,20 @@ import axios from 'axios'
 const redeem = () => {
 
     const [code, setCode] = useState(undefined)
+    const [email, setEmail] = useState(undefined)
     const [success, setSuccess] = useState(false)
     const [valid, setValid] = useState(false)
     const [error, setError] = useState(false)
 
+    const emailValid = () => {
+        const emailRegex = new RegExp("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")
+        if(emailRegex.test(email)) {
+            return true
+        } 
+    }
+
     const redeem = async () => {
-        const { data: { success } } = await axios.post('/api/code', { code })
+        const { data: { success } } = await axios.post('/api/code', { code, email })
 
         if(success) {
             setSuccess(true)
@@ -27,12 +35,16 @@ const redeem = () => {
     }
 
     useEffect(() => {
-        if(code && code.length >= 6) {
-            setValid(true)
+        if(code && code.length >= 6 && email) {
+            if(emailValid()) {
+                setValid(true)
+            } else {
+                setValid(false)
+            }
         } else {
             setValid(false)
         }
-    }, [code])
+    }, [code, email])
 
     const expiry = new Date('31 December, 2021').getTime()
 
@@ -66,6 +78,15 @@ const redeem = () => {
                                     value={code}
                                     placeholder="Enter code"
                                     onChange={(e) => setCode(e.target.value)}
+                                    className={`bg-transparent placeholder-black placeholder-opacity-50 font-medium focus:outline-none`}
+                                />
+                            </div>
+                            <div className={`${error && 'border-3 border-red-500'} bg-white border-2 px-4 py-2 rounded-lg text-black flex items-center mb-2`}>
+                                <MailIcon className="w-4 h-4 mr-2 opacity-50" />
+                                <input type="text"
+                                    value={email}
+                                    placeholder="Enter contact email"
+                                    onChange={(e) => setEmail(e.target.value)}
                                     className={`bg-transparent placeholder-black placeholder-opacity-50 font-medium focus:outline-none`}
                                 />
                             </div>
